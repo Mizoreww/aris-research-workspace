@@ -1,0 +1,19 @@
+{
+  "mcpServers": {
+    "codex": {
+      "type": "stdio",
+      "command": "codex",
+      "args": ["mcp-server"]
+    },
+    "codex-image2": {
+      "type": "stdio",
+      "command": "python3",
+      "args": [
+        "${ARIS_REPO}/mcp-servers/codex-image2/server.py"
+      ],
+      "env": {
+        "CODEX_IMAGE2_STATE_DIR": "${WORKSPACE}/.aris/codex-image2-state"
+      }
+    }
+  }
+}

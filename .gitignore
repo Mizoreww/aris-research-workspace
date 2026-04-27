@@ -1,0 +1,60 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Secrets
+.env
+
+# Generated from templates by scripts/bootstrap.sh
+.mcp.json
+CLAUDE.md
+
+# ─────────── ARIS runtime state ───────────
+.aris/traces/
+.aris/codex-image2-state/
+.aris/meta/
+.aris/installed-skills.txt
+.aris/installed-skills.txt.prev
+
+# Reconstructible: ARIS skill symlinks (rebuilt by install_aris.sh --reconcile)
+.claude/skills/
+
+# Personal design docs from brainstorming/writing-plans skills
+# (kept local; may contain machine-specific absolute paths)
+docs/superpowers/
+
+# ─────────── Per-idea ───────────
+# Training outputs (only README is tracked)
+ideas/*/runs/*
+!ideas/*/runs/.gitkeep
+!ideas/*/runs/README.md
+
+# Experiment code caches
+ideas/*/experiment/code/__pycache__/
+ideas/*/experiment/code/.venv/
+
+# AI-generated figures: track structure, not binaries
+ideas/*/paper/figures/ai_generated/*
+!ideas/*/paper/figures/ai_generated/.gitkeep
+
+# LaTeX build artifacts
+ideas/*/paper/*.aux
+ideas/*/paper/*.log
+ideas/*/paper/*.out
+ideas/*/paper/*.bbl
+ideas/*/paper/*.blg
+ideas/*/paper/*.synctex.gz
+ideas/*/paper/_build/

@@ -1,0 +1,62 @@
+# CLAUDE.md
+
+## What this repo is
+
+`aris-research-workspace` is a multi-idea research workspace template. Every new research idea lives in its own folder under `ideas/<YYYY-MM-DD>_<slug>/` and carries the full lifecycle in subdirectories: idea-discovery → experiment → results → paper → reviews.
+
+## Dependency: the ARIS source repo
+
+This workspace consumes the [Auto-claude-code-research-in-sleep](https://github.com/) (ARIS) repo via symlinks. After cloning this workspace you must:
+
+```bash
+git clone <ARIS source URL> ~/Desktop/Auto-claude-code-research-in-sleep
+export ARIS_REPO=~/Desktop/Auto-claude-code-research-in-sleep
+bash scripts/bootstrap.sh
+```
+
+`bootstrap.sh` does the following:
+1. Renders `.mcp.json` from `.mcp.json.template` via `envsubst`.
+2. Copies `CLAUDE.md.template` to `CLAUDE.md` (only if `CLAUDE.md` does not exist).
+3. Runs `install_aris.sh` to recreate the `.claude/skills/` symlinks and append the ARIS-managed `<!-- ARIS:BEGIN ... ARIS:END -->` block to `CLAUDE.md`.
+4. Reminds you to restart Claude Code so the new MCP config is picked up.
+
+> Note: `CLAUDE.md` itself is gitignored (it carries machine-absolute paths from the ARIS-managed block). Only `CLAUDE.md.template` is tracked. To change the workspace-level Claude Code instructions, edit `CLAUDE.md.template`.
+
+## Creating a new idea
+
+```bash
+scripts/new-idea.sh <kebab-slug>
+# example: scripts/new-idea.sh joint-delta-statefree
+```
+
+The script creates `ideas/<today>_<slug>/{idea,experiment,runs,results,paper,reviews}/` with a starter `MANIFEST.md`.
+
+## Per-idea phase mapping
+
+| Subfolder | ARIS skill families |
+|---|---|
+| `idea/` | idea-discovery, research-lit, novelty-check, research-refine |
+| `experiment/` | experiment-plan, experiment-bridge, run-experiment |
+| `runs/` | monitor-experiment, training-check (training outputs; gitignored) |
+| `results/` | analyze-results, result-to-claim |
+| `paper/` | paper-plan, paper-write, paper-figure, paper-compile |
+| `reviews/` | auto-review-loop, paper-claim-audit, rebuttal |
+
+## Path conventions
+
+- `${ARIS_REPO}` — the local clone of the ARIS source repo. Must be exported by the user.
+- `${WORKSPACE}` — the root of this repo, equal to `$(pwd)` when run from the workspace root.
+
+## Updating ARIS skills
+
+After `git pull` in the ARIS source repo:
+
+```bash
+bash "$ARIS_REPO/tools/install_aris.sh" . --reconcile
+```
+
+## Removing ARIS (deletes only the ARIS-managed entries; your own files stay)
+
+```bash
+bash "$ARIS_REPO/tools/install_aris.sh" . --uninstall
+```
