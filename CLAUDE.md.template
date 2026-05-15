@@ -6,10 +6,10 @@
 
 ## Dependency: the ARIS source repo
 
-This workspace consumes the [Auto-claude-code-research-in-sleep](https://github.com/) (ARIS) repo via symlinks. After cloning this workspace you must:
+This workspace consumes the [Auto-claude-code-research-in-sleep](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep) (ARIS) repo via symlinks. After cloning this workspace you must:
 
 ```bash
-git clone <ARIS source URL> ~/Desktop/Auto-claude-code-research-in-sleep
+git clone https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep.git ~/Desktop/Auto-claude-code-research-in-sleep
 export ARIS_REPO=~/Desktop/Auto-claude-code-research-in-sleep
 bash scripts/bootstrap.sh
 ```

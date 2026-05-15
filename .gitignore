@@ -28,6 +28,8 @@ CLAUDE.md
 .aris/meta/
 .aris/installed-skills.txt
 .aris/installed-skills.txt.prev
+# Reconstructible: symlink to $ARIS_REPO/tools (machine-absolute path)
+.aris/tools
 
 # Reconstructible: ARIS skill symlinks (rebuilt by install_aris.sh --reconcile)
 .claude/skills/
